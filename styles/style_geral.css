@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-01: white;
+    --color-02: #F8EDEF;
+    --color-03: #8B1E32;
+    --color-04: #4A101D;
+    --color-05: black;
+
+    --font-01: 'Poppins', sans-serif;
+    --font-02: 'Fredoka', sans-serif;
+}
+
+body {
+    font-family: var(--font-01);
+    background-color: var(--color-02);
+    color: var(--color-05);
+}
+
+header {
+    background-color: var(--color-03);
+    color: var(--color-01);
+    padding: 25px;
+    text-align: center;
+}
