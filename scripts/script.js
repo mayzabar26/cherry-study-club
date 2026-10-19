@@ -1,12 +1,14 @@
-//Criando variáveis
-//Selecionando buttons do HTML
+//Criando variáveis: Selecionando buttons do HTML
 const startButton = document.querySelector("#start-mission");
 const missionsCount = document.querySelector("#missions-count");
+const resetButton = document.querySelector("#reset-weekly-progress");
 
-//Variável de contagem de missões concluídas
-let completedMissionsCount = 0;
 
-//Evento de clique no botão "Start Mission"
+//Variável de missões concluídas e armazenando no localStorage (valor seja mantido mesmo após o usuário fechar a página)
+let completedMissionsCount = parseInt(localStorage.getItem("completedMissionsCount")) || 0; //getItem recupera o valor do localStorage
+missionsCount.textContent = completedMissionsCount; //Garante que o valor seja exibido no HTML ao carregar a página
+
+//Evento: Button "Start Mission"
 startButton.addEventListener("click", function() {
 
     if (startButton.textContent === "Mission Completed!") {
@@ -19,12 +21,15 @@ startButton.addEventListener("click", function() {
         startButton.style.backgroundColor = "pink";
         startButton.style.color = "black";
         
-        //Incrementando a contagem de missões concluídas e atualizando o texto no HTML
-        completedMissionsCount++;
-        missionsCount.textContent = completedMissionsCount;
-
-        //Se o botão já disser Mission Completed! O JavaScript volta o texto para Start Mission e restaura as cores originais.
-        //Caso contrário (else) O JavaScript muda o texto para Mission Completed! e aplica as cores de conclusão.
+        completedMissionsCount++; //Incrementando a contagem de missões concluídas
+        missionsCount.textContent = completedMissionsCount; //Atualizando o texto no HTML
+        localStorage.setItem("completedMissionsCount", completedMissionsCount); //setItem salva o valor no localStorage
     }
 });
 
+//Evento: Button "Reset Weekly Progress"
+resetButton.addEventListener("click", function() {
+    completedMissionsCount = 0; //Resetando a contagem de missões concluídas
+    missionsCount.textContent = completedMissionsCount; //Atualizando o texto no HTML
+    localStorage.setItem("completedMissionsCount", completedMissionsCount); //Atualizando o valor no localStorage
+});
